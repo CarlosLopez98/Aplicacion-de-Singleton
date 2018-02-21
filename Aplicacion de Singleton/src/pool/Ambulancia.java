@@ -12,10 +12,12 @@ package pool;
 public class Ambulancia {
     
     private int numero;
+    private String ubicacion;
     private boolean estado;
     
-    public Ambulancia(int n){
+    public Ambulancia(int n, String u){
         numero = n;
+        ubicacion = u;
         estado = true;
     }
     
@@ -33,5 +35,13 @@ public class Ambulancia {
     
     public void setNumero(int n){
         numero = n;
+    }
+    
+    public String getUbicacion(){
+        return ubicacion;
+    }
+    
+    public void setUbicacion(String u){
+        ubicacion = u;
     }
 }

@@ -19,7 +19,7 @@ public class PoolAmbulancias {
         ambulancias = new Ambulancia[numeroAmbulancias];
         
         for(int i=0; i<numeroAmbulancias; i++){
-            ambulancias[i] = new Ambulancia(i+1);
+            ambulancias[i] = new Ambulancia(i+1,"");
         }
     }
     
@@ -33,12 +33,21 @@ public class PoolAmbulancias {
     public Ambulancia getAmbulancia(){
         for(int i=0; i<numeroAmbulancias; i++){
             if(ambulancias[i].getEstado()){
-                System.out.println("Asignando Ambulancia "+ambulancias[i].getNumero());
+                System.out.println("Asignando Ambulancia " + ambulancias[i].getNumero());
                 ambulancias[i].setEstado(false);
                 return ambulancias[i];
+            }else{
+                System.out.println("Ambulancia "+ambulancias[i].getNumero()+
+                        " en servicio en " + ambulancias[i].getUbicacion());
             }
         }
         
         return null;
+    }
+    
+    public void liberarAmbulancia(Ambulancia a){
+        System.out.println("Terminando operacion de ambulancia " + a.getNumero());
+        
+        a.setEstado(true);
     }
 }
