@@ -11,8 +11,8 @@ package pool;
  */
 public class Ambulancia {
     
-    public int numero;
-    public boolean estado;
+    private int numero;
+    private boolean estado;
     
     public Ambulancia(int n){
         numero = n;
