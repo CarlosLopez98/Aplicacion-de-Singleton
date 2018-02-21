@@ -8,3 +8,8 @@ Como aplicamos el Pool de Objetos
 
 En la aplicación de administración de ambulancias el Pool de objetos se encarga de asignar cada una de las 10 ambulancias y de que no re-asigne una ambulancia que no está disponible
 
+
+Integrantes
+Carlos E. Lopez 20162021295
+Juan D. Arias Ortegon 20161020522
+J. Esteban Pacavita 20162020467
