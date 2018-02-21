@@ -7,11 +7,16 @@ package pool;
 
 /**
  *
- * @author Carlos
+ * @author Juancho
  */
 public class Launcher {
-    
-    public static void main(String[] args){
-        Consola c = new Consola();
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Consola c= new Consola();
     }
+    
 }
+

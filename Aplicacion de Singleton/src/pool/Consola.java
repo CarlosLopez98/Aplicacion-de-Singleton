@@ -5,33 +5,44 @@
  */
 package pool;
 
-import java.util.Scanner;
-
 /**
  *
- * @author Carlos
+ * @author Juancho
  */
 public class Consola {
-    public Scanner sc;
-    public String lugar;
+    boolean validar;
+    int des;
+    Lector l;
+    PoolAmbulancias admin;
+    public Consola() {
+        validar=true;
+        des=0;
+        l = new Lector();
+        admin = new PoolAmbulancias();
+        arrancar();
+    }
     
-    public Ambulancia ambulanciaUno;
-    public Ambulancia ambulanciaDos;
-    public Ambulancia ambulanciaTres;
-    public Ambulancia ambulanciaCuatro;
-    public Ambulancia ambulanciaCinco;
-    public Ambulancia ambulanciaSeis;
-    
-    public PoolAmbulancias pool;
-    
-    public Consola(){
-        sc = new Scanner(System.in);
-        
-        pool = PoolAmbulancias.getInstancia();
-        
-        System.out.println("Bienvenido al servicio de ambulancias");
-        
-        
+    public void arrancar(){
+        while(validar){
+            System.out.println("¿que desea hacer?");
+            System.out.println("1. listar ambulancias");
+            System.out.println("2. enviar una ambulancia");
+            System.out.println("3. recibir una ambulancia");
+            des=l.leerint("digite el numero correspondiente a su opcion");
+            switch(des){
+                case 1:
+                    admin.listar(1);
+                    break;
+                case 2:
+                    admin.enviar();
+                    break;
+                case 3:
+                    admin.listar(3);
+                    des=l.leerint("digite el numero de la ambulancia que desea recibir");
+                    admin.recibir(des);
+                    break;
+            }
+        }
     }
 }
 

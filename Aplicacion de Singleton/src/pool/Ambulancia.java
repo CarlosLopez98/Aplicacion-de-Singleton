@@ -7,41 +7,29 @@ package pool;
 
 /**
  *
- * @author Carlos
+ * @author Juancho
  */
 public class Ambulancia {
-    
-    private int numero;
-    private String ubicacion;
-    private boolean estado;
-    
-    public Ambulancia(int n, String u){
-        numero = n;
-        ubicacion = u;
-        estado = true;
-    }
-    
-    public boolean getEstado(){
+   private boolean estado;
+
+    public boolean isEstado() {
         return estado;
     }
-    
-    public void setEstado(boolean e){
-        estado = e;
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
-    
-    public int getNumero(){
-        return numero;
+
+    public int getId() {
+        return id;
     }
-    
-    public void setNumero(int n){
-        numero = n;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    
-    public String getUbicacion(){
-        return ubicacion;
-    }
-    
-    public void setUbicacion(String u){
-        ubicacion = u;
+   private int id;
+    public Ambulancia(int n) {
+        estado=true;
+        id= n;
     }
 }

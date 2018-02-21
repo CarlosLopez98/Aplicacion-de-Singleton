@@ -5,49 +5,74 @@
  */
 package pool;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
- * @author Carlos
+ * @author Juancho
  */
 public class PoolAmbulancias {
-    private final int numeroAmbulancias;
-    private static PoolAmbulancias instancia;
-    private Ambulancia[] ambulancias;
+    private int min;
+    private int max;
+    List <Ambulancia> lista;
     
-    private PoolAmbulancias(){
-        numeroAmbulancias = 5;
-        ambulancias = new Ambulancia[numeroAmbulancias];
-        
-        for(int i=0; i<numeroAmbulancias; i++){
-            ambulancias[i] = new Ambulancia(i+1,"");
+    public PoolAmbulancias() {
+
+        min=1;
+        max=10;
+        lista = new ArrayList<>();
+        for (int i = 0; i < min; i++) {
+            lista.add(new Ambulancia(i+1));
         }
     }
     
-    public static PoolAmbulancias getInstancia(){
-        if(instancia == null){
-            instancia = new PoolAmbulancias();
-        }
-        return instancia;
-    }
-    
-    public Ambulancia getAmbulancia(){
-        for(int i=0; i<numeroAmbulancias; i++){
-            if(ambulancias[i].getEstado()){
-                System.out.println("Asignando Ambulancia " + ambulancias[i].getNumero());
-                ambulancias[i].setEstado(false);
-                return ambulancias[i];
+    public void listar(int n){
+        //System.out.println("pool.AdministradorPool.listar() "+lista.size());
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).isEstado() ){
+                if(n==1 || n==2){
+                     System.out.println("ambulancia "+lista.get(i).getId()+" disponible");
+                }
             }else{
-                System.out.println("Ambulancia "+ambulancias[i].getNumero()+
-                        " en servicio en " + ambulancias[i].getUbicacion());
+                if(n==1 || n==3){
+                System.out.println("ambulancia "+lista.get(i).getId()+" ocupada");
+                }
             }
         }
-        
-        return null;
     }
     
-    public void liberarAmbulancia(Ambulancia a){
-        System.out.println("Terminando operacion de ambulancia " + a.getNumero());
-        
-        a.setEstado(true);
+    public void enviar(){
+        boolean validar=false;
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).isEstado()){
+                lista.get(i).setEstado(false);
+                System.out.println("se envio la ambulancia "+(i+1));
+                validar=true;
+                break;
+            }
+        }
+        if(validar==false){
+            if(lista.size()<max){
+                crear();
+                enviar();
+            }else{
+                System.out.println("no hay ambulancias disponibles");
+            }
+        }
+       
     }
+    public void crear(){
+        lista.add(new Ambulancia(lista.size()+1));
+    }
+    
+    public void recibir(int n){
+        if(lista.get(n-1).isEstado()==false){
+            lista.get(n-1).setEstado(true);
+            System.out.println("ambulancia "+n+" recibida");
+        }else{
+            System.out.println("la ambulancia esta disponible, no se puede recibir");
+        }
+    }
+    
 }
